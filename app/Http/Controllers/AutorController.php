@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Autor;
 use Illuminate\Http\Request;
 
 class AutorController extends Controller
 {
+    // faça a injeção de dependência do context
+    private $repository;
+    public function __construct(Autor $autor)
+    {
+        $this->repository = $autor;
+    }
+
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //dd('acessando o controller autor controller - index');
-        return view('autor.index');
+
+        //essa variavel repository eu criei no construtor e atribui o valor do model
+        $registros =  $this->repository->paginate(10);
+        //$registros = Autor::paginate(10);
+
+        return view('autor.index', [
+            'registros'=> $registros,
+        ]);
     }
 
     /**
@@ -45,7 +61,19 @@ class AutorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //complete a função de editar
+        $registro = $this->repository->find($id);
+
+        //Validação para caso o registro não exista
+        //if(!$registro){
+          //  return redirect()->back();
+        //}
+
+        return view('autor.edit', [
+            'registro'=> $registro,
+        ]);
+
+
     }
 
     /**

@@ -25,3 +25,12 @@ Route::get('/autor/index',[AutorController::class,'index']);
 
 //Criar
 Route::get('/autor/create',[AutorController::class,'create']);
+
+//Editar
+Route::get('/autor/edit/{id}',[AutorController::class,'edit']);
+
+//Deletar
+Route::get('/autor/destroy/{id}',[AutorController::class,'destroy']);
+
+//Listar com id
+Route::get('/autor/show/{id}',[AutorController::class,'show']);
