@@ -36,5 +36,8 @@ Route::get('/autor/destroy/{id}',[AutorController::class,'destroy'])->name('auto
 //Listar com id
 Route::get('/autor/show/{id}',[AutorController::class,'show'])->name('autor.show');
 
+Route::get('/autor/delete/{id}',[AutorController::class,'delete'])->name('autor.delete');
 
-Route::post('/autor/store/{id}',[AutorController::class,'store'])->name('autor.store');
+Route::post('/autor/update/{id}',[AutorController::class,'update'])->name('autor.update');
+Route::post('/autor/store',[AutorController::class,'store'])->name('autor.store');
+Route::post('/autor/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
