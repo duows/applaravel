@@ -46,9 +46,7 @@ class AutorController extends Controller
     public function store(Request $request)
     {
         //
-
-        $registro = $request->all();
-        $this->service->create($registro);
+        $this->service->store($request);
         return redirect()->route('autor.index');
         
     }
@@ -63,7 +61,7 @@ class AutorController extends Controller
         $registro = $this->service->show($id);
 
         return view('autor.show', [
-            'registro' => $registro,
+            'registro' => $registro['registro'],
         ]);
     }
 
@@ -81,7 +79,7 @@ class AutorController extends Controller
         //}
 
         return view('autor.edit', [
-            'registro'=> $registro,
+            'registro'=> $registro['registro'],
         ]);
 
 
@@ -92,23 +90,15 @@ class AutorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        $registro = $request->all();
-
-
-
-        $autor = $this->service->show($id);
-
-        $autor->update($registro);
-
-        dd($registro);
+        $this->service->update($request, $id);
+        return redirect()->route('autor.index');
     }
 
     public function delete($id) {
         $registro = $this->service->show($id);
 
         return view('autor.destroy', [
-            'registro'=> $registro,
+            'registro'=> $registro['registro'],
         ]);
     }
 
@@ -118,12 +108,8 @@ class AutorController extends Controller
     public function destroy(string $id)
     {
 
-        $registro = $this->service->show($id);
+        $this->service->destroy($id);
 
-        $registro->delete();
-
-        $registros = $this->service->all;
-        
         return redirect()->route('autor.index');
         
     }

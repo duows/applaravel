@@ -21,17 +21,24 @@ class AutorService implements AutorServiceInterface {
         );
     }
     
-
     public function create() {
 
     }
 
     public function store(Request $request) {
-           
+        $request->validate([
+            $this->repository->rules()
+        ]) ;
+
+        $this->repository->create($request->all());
+
     }
 
     public function show(string $id) {
-
+        $registro = $this->repository->find($id);
+        return([
+            "registro"=> $registro,
+        ]);
     }
 
     public function edit(string $id) {
@@ -39,7 +46,13 @@ class AutorService implements AutorServiceInterface {
     }
 
     public function update(Request $request, string $id) {
+        $request->validate([
+            $registro = $request->all()
+        ]);
 
+        $autor = $this->repository->find($id);
+
+        $autor->update($registro);
     }
 
     public function delete($id) {
@@ -47,7 +60,7 @@ class AutorService implements AutorServiceInterface {
     }
     
     public function destroy(string $id) {
-
+        $this->repository->find($id)->delete();
     }
 
 }
