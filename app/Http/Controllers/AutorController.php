@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Autor;
+use App\Services\AutorServiceInterface;
 use Illuminate\Http\Request;
 
 class AutorController extends Controller
 {
     // faça a injeção de dependência do context
-    private $repository;
-    public function __construct(Autor $autor)
+    private $service;
+    public function __construct(AutorServiceInterface $service)
     {
-        $this->repository = $autor;
+        $this->service = $service;
     }
-
 
     /**
      * Display a listing of the resource.
@@ -22,12 +22,12 @@ class AutorController extends Controller
     {
         //dd('acessando o controller autor controller - index');
 
-        //essa variavel repository eu criei no construtor e atribui o valor do model
-        $registros =  $this->repository->paginate(10);
-        //$registros = Autor::paginate(10);
+        //essa variavel service eu criei no construtor e atribui o valor do model
+        $registros =  $this->service->index(10);
+        //$registros = Autor::index(10);
 
         return view('autor.index', [
-            'registros'=> $registros,
+            'registros'=> $registros['registros'],
         ]);
     }
 
@@ -48,7 +48,7 @@ class AutorController extends Controller
         //
 
         $registro = $request->all();
-        $this->repository->create($registro);
+        $this->service->create($registro);
         return redirect()->route('autor.index');
         
     }
@@ -60,7 +60,7 @@ class AutorController extends Controller
     {
         //
 
-        $registro = $this->repository->find($id);
+        $registro = $this->service->show($id);
 
         return view('autor.show', [
             'registro' => $registro,
@@ -73,7 +73,7 @@ class AutorController extends Controller
     public function edit(string $id)
     {
         //complete a função de editar
-        $registro = $this->repository->find($id);
+        $registro = $this->service->show($id);
 
         //Validação para caso o registro não exista
         //if(!$registro){
@@ -97,7 +97,7 @@ class AutorController extends Controller
 
 
 
-        $autor = $this->repository->find($id);
+        $autor = $this->service->show($id);
 
         $autor->update($registro);
 
@@ -105,7 +105,7 @@ class AutorController extends Controller
     }
 
     public function delete($id) {
-        $registro = $this->repository->find($id);
+        $registro = $this->service->show($id);
 
         return view('autor.destroy', [
             'registro'=> $registro,
@@ -118,11 +118,11 @@ class AutorController extends Controller
     public function destroy(string $id)
     {
 
-        $registro = $this->repository->find($id);
+        $registro = $this->service->show($id);
 
         $registro->delete();
 
-        $registros = $this->repository->all;
+        $registros = $this->service->all;
         
         return redirect()->route('autor.index');
         

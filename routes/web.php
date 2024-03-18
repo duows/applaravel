@@ -21,23 +21,27 @@ Route::get('/', function () {
 
 //Chamando rota para usar o controller.
 //Listar geral
-Route::get('/autor/index',[AutorController::class,'index'])->name('autor.index');
 
-//Criar
-Route::get('/autor/create',[AutorController::class,'create'])->name('autor.create');
+Route::prefix('autor')->group(function () {
 
-//Editar
-Route::get('/autor/edit/{id}',[AutorController::class,'edit'])->name('autor.edit');
+    Route::get('/index',[AutorController::class,'index'])->name('autor.index');
+
+    Route::get('/create',[AutorController::class,'create'])->name('autor.create');
+
+    //Editar
+    Route::get('/edit/{id}',[AutorController::class,'edit'])->name('autor.edit');
 
 
-//Deletar
-Route::get('/autor/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
+    //Deletar
+    Route::get('/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
 
-//Listar com id
-Route::get('/autor/show/{id}',[AutorController::class,'show'])->name('autor.show');
+    //Listar com id
+    Route::get('/show/{id}',[AutorController::class,'show'])->name('autor.show');
 
-Route::get('/autor/delete/{id}',[AutorController::class,'delete'])->name('autor.delete');
+    Route::get('/delete/{id}',[AutorController::class,'delete'])->name('autor.delete');
 
-Route::post('/autor/update/{id}',[AutorController::class,'update'])->name('autor.update');
-Route::post('/autor/store',[AutorController::class,'store'])->name('autor.store');
-Route::post('/autor/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
+    Route::post('/update/{id}',[AutorController::class,'update'])->name('autor.update');
+    Route::post('/store',[AutorController::class,'store'])->name('autor.store');
+    Route::post('/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
+
+});
