@@ -11,7 +11,6 @@
                 @error('nome')
                     <span>
                         <strong>{{ $message }}</strong>
-
                     </span>
                 @enderror
         </div>

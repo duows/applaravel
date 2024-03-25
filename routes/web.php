@@ -40,7 +40,7 @@ Route::prefix('autor')->group(function () {
 
     Route::get('/delete/{id}',[AutorController::class,'delete'])->name('autor.delete');
 
-    Route::post('/update/{id}',[AutorController::class,'update'])->name('autor.update');
+    Route::put('/update/{id}',[AutorController::class,'update'])->name('autor.update');
     Route::post('/store',[AutorController::class,'store'])->name('autor.store');
     Route::post('/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
 
