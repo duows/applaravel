@@ -25,7 +25,7 @@ class AutorService implements AutorServiceInterface {
 
     }
 
-    public function store(Request $request) {
+    public function store($request) {
         // $request->validate(
         //     $this->repository->rules(),
         //     $this->repository->feedback(),
