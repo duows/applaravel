@@ -10,6 +10,42 @@
     <div class="container">
         <div class='tile'>
             <div clase='tile-body'>
+
+            <form class="row row-cols-lg-auto g-3 align-items-center">
+                @csrf
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+                    <div class="input-group">
+                    <!-- <div class="input-group-text">@</div> -->
+                    <input type="text" name="pesquisar "class="form-control" id="pesquisar" placeholder="Pesquisa">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                    <select class="form-select" id="inlineFormSelectPref" name="perPage">
+                    @foreach($pages as $perPage)
+                        <option value="{{ $perPage }}"
+                        @if($item==$perPage) selected @endif>  
+                        {{ $perPage }}</option>
+                    @endforeach
+                    </select>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="inlineFormCheck">
+                    <label class="form-check-label" for="inlineFormCheck">
+                        Remember me
+                    </label>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+
                 <table class="table table-stripped table-bordered table-hover">
                     <tr class="cabecalho">
                         <th>Nome</th>

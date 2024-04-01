@@ -19,16 +19,21 @@ class AutorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //dd('acessando o controller autor controller - index');
 
+        $pesquisar = $request->pesquisar;
+        $page = $request->perPage;
+
         //essa variavel service eu criei no construtor e atribui o valor do model
-        $registros =  $this->service->index(10);
+        $registros =  $this->service->index($pesquisar, $page);
         //$registros = Autor::index(10);
 
         return view('autor.index', [
             'registros'=> $registros['registros'],
+            'pages' => [5, 10, 15, 20],
+            'item' => 10,
         ]);
     }
 
