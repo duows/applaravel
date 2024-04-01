@@ -1,16 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div>
-    <div class="app-title">
-        <div>
-            <h1><i class="bi bi-speedometer"></i> Cadastro</h1>
-            <p>Cadastro de novos autores!</p>
-        </div>
-        <ul class="app-breadcrumb breadcrumb">
-            <li class="breadcrumb-item"><i class="bi bi-house-door fs-6"></i></li>
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        </ul>
-    </div>
+    <x-local-sistema
+    titulo="Inclusão"
+    descricao="Cadastrar novo registro!"
+    url="autor.index"
+    nomeurl="Listagem de autores"
+    />
+    
 
     <div class='tile'>
         <div clase='tile-body'>

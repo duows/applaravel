@@ -7,7 +7,7 @@
                 type="text"
                 name="nome"
                 id="nome"
-                value="{{ isset($registro->nome) ? $registro->nome : ''}}">
+                value="{{ $registro->nome ?? old('nome') }}">
                 @error('nome')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -22,7 +22,7 @@
                 type="text"
                 name="apelido"
                 id="apelido"
-                value="{{ isset($registro->apelido) ? $registro->apelido : ''}}">
+                value="{{ $registro->apelido ?? old('apelido') }}">
                 @error('apelido')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -38,7 +38,7 @@
                 type="text"
                 name="cidade"
                 id="cidade"
-                value="{{ isset($registro->cidade) ? $registro->cidade : ''}}">
+                value="{{ $registro->cidade ?? old('cidade') }}">
                 @error('cidade')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -54,7 +54,7 @@
                 type="text"
                 name="bairro"
                 id="bairro"
-                value="{{ isset($registro->bairro) ? $registro->bairro : ''}}">
+                value="{{ $registro->bairro ?? old('bairro') }}">
                 @error('bairro')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -70,7 +70,7 @@
                 type="text"
                 name="cep"
                 id="cep"
-                value="{{ isset($registro->cep) ? $registro->cep : ''}}">
+                value="{{ $registro->cep ?? old('cep') }}">
                 @error('cep')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -86,7 +86,7 @@
                 type="text"
                 name="email"
                 id="email"
-                value="{{ isset($registro->email) ? $registro->email : ''}}">
+                value="{{ $registro->email ?? old('email') }}">
                 @error('email')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>
@@ -102,7 +102,7 @@
                 type="text"
                 name="telefone"
                 id="telefone"
-                value="{{ isset($registro->telefone) ? $registro->telefone : ''}}">
+                value="{{ $registro->telefone ?? old('telefone') }}">
                 @error('telefone')
                     <span class="invalid-feedback">
                         <strong>{{ $message }}</strong>

@@ -8,12 +8,21 @@ use Illuminate\View\Component;
 
 class LocalSistema extends Component
 {
+    public $titulo;
+    public $descricao;
+    public $url;
+    public $nomeurl;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($titulo, $descricao, $url, $nomeurl)
     {
         //
+        $this->titulo = $titulo;
+        $this->descricao = $descricao;
+        $this->url = $url;
+        $this->nomeurl = $nomeurl;
+
     }
 
     /**
