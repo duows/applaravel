@@ -17,7 +17,7 @@
             <form action="{{ route('autor.store') }}" method="POST">
                 @csrf
                 @include('autor.__form')
-                <button type="submit">Salvar Registro</button>
+                <button type="submit" class="btn btn-secondary">Salvar Registro</button>
             </form>
         </div>
     </div>
