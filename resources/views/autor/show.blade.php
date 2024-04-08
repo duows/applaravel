@@ -8,6 +8,7 @@
         nomeurl="Listagem de autores"
         />
 
+        @include('layouts.alerts')
         <form>
             @include('autor.__form')
             <a href="{{ route('autor.index') }}">Cancelar</a>

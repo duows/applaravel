@@ -8,7 +8,7 @@
         nomeurl="Listagem de autores"
         />
 
-            
+        @include('layouts.alerts')
         <div class='tile'>
             <div clase='tile-body'>
                 <form action="{{ route('autor.update', $registro->id) }}" method="POST">

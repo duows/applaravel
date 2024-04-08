@@ -8,6 +8,7 @@
     />
 
     <div class="container">
+        @include('layouts.alerts')
         <div class='tile'>
             <div clase='tile-body'>
 

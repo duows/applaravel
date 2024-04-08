@@ -55,10 +55,14 @@ class AutorController extends Controller
     public function store(AutorFormRequest $request)
     {
         //
+        $registro = $request->all();
 
-        $this->service->store($request);
-        return redirect()->route('autor.index');
-        
+        try {
+            $this->service->store($request);
+            return redirect()->route('autor.index')->with('success', 'Cadastrado com sucesso');
+        } catch (\Exception $e) {
+            return view('autor.create', ['registro' => $registro, 'fail'=> $e->getMessage()]);
+        }
     }
 
     /**
@@ -100,16 +104,14 @@ class AutorController extends Controller
      */
     public function update(AutorFormRequest $request, string $id)
     {
-        $this->service->update($request, $id);
-        return redirect()->route('autor.index');
-    }
+        $registro = $request->all();
 
-    public function delete($id) {
-        $registro = $this->service->show($id);
-
-        return view('autor.destroy', [
-            'registro'=> $registro['registro'],
-        ]);
+        try {
+            $this->service->update($registro, $id);
+            return redirect()->route('autor.index')->with('success', 'Alterado com sucesso');
+        } catch (\Exception $e) {
+            return view('autor.edit', ['registro' => $registro, 'fail'=> $e->getMessage()]);
+        }
     }
 
     /**

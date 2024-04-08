@@ -4,7 +4,10 @@ namespace App\Services;
 
 use App\Models\Autor;
 use App\Services\AutorServiceInterface;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use RuntimeException;
 
 class AutorService implements AutorServiceInterface {
 
@@ -40,9 +43,15 @@ class AutorService implements AutorServiceInterface {
         //     $this->repository->rules(),
         //     $this->repository->feedback(),
         // ) ;
+        DB::beginTransaction();
 
-        $this->repository->create($request->all());
-
+        try {
+            $registro = $this->repository->create($request);
+            DB::commit();
+            return $registro;
+        } catch (\Exception $e) {
+            return new Exception('Erro ao criar o registro.');
+        }
     }
 
     public function show(string $id) {
