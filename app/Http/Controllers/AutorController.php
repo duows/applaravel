@@ -72,11 +72,15 @@ class AutorController extends Controller
     {
         //
 
-        $registro = $this->service->show($id);
+        //$registro = $request->all();
 
-        return view('autor.show', [
-            'registro' => $registro['registro'],
-        ]);
+        try {
+            $registro = $this->service->show($id);
+            $this->service->update($registro, $id);
+            return redirect()->route('autor.index', ['registro'=>$registro,]);
+        } catch (\Exception $e) {
+            return view('autor.index', ['registro' => $registro, 'fail'=> $e->getMessage()]);
+        }
     }
 
     /**
@@ -84,19 +88,13 @@ class AutorController extends Controller
      */
     public function edit(string $id)
     {
-        //complete a função de editar
-        $registro = $this->service->show($id);
-
-        //Validação para caso o registro não exista
-        //if(!$registro){
-          //  return redirect()->back();
-        //}
-
-        return view('autor.edit', [
-            'registro'=> $registro['registro'],
-        ]);
-
-
+        try {
+            $registro = $this->service->show($id);
+            $this->service->update($registro, $id);
+            return redirect()->route('autor.index', ['registro'=>$registro,]);
+        } catch (\Exception $e) {
+            return view('autor.edit', ['registro' => $registro, 'fail'=> $e->getMessage()]);
+        }
     }
 
     /**
@@ -119,10 +117,11 @@ class AutorController extends Controller
      */
     public function destroy(string $id)
     {
-
-        $this->service->destroy($id);
-
-        return redirect()->route('autor.index');
-        
+        try {
+            $this->service->destroy($id);
+            return redirect()->route('autor.index')->with('success', 'Deletado com sucesso');
+        } catch (\Exception $e) {
+            return view('autor.destroy', ['fail'=> $e->getMessage()]);
+        }
     }
 }
