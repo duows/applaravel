@@ -7,12 +7,17 @@
         url="autor.index"
         nomeurl="Listagem de autores"
         />
-
-        <form action="{{ route('autor.destroy', $registro->id) }}" method="POST">
-            @csrf    
-            @method('DELETE')
-            @include('autor.__form')   
-            <button type="submit">Deletar Registro</button>
-        </form>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+                    <form action="{{ route('autor.destroy', $registro->id) }}" method="POST">
+                        @csrf    
+                        @method('DELETE')
+                        @include('autor.__form')   
+                        <button type="submit">Deletar Registro</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
